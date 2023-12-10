@@ -13,7 +13,7 @@ from models.state import State
 from models.user import User
 
 
-def handle_cmd(arg) -> list:
+def handle_cmd(arg):
     """Parse a string argument and return a list of items.
 
     Args:
@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         "User"
         }
 
-    def emptyline(self) -> None:
+    def emptyline(self):
         """Do nothins when receiving an empty line."""
         pass
 
@@ -88,16 +88,16 @@ class HBNBCommand(cmd.Cmd):
         print("** Unknown syntax: {}".format(arg))
         return False
 
-    def do_quit(self, arg) -> bool:
+    def do_quit(self, arg):
         """Quit command to exit the program."""
         return True
 
-    def do_EOF(self, arg) -> bool:
+    def do_EOF(self, arg):
         """EOF signal to exit the program."""
         print("")
         return True
 
-    def do_create(self, arg) -> bool | None:
+    def do_create(self, arg):
         """
         Usage: create <class>
 
@@ -113,7 +113,7 @@ class HBNBCommand(cmd.Cmd):
         print(eval(list_args[0])().id)
         storage.save()
 
-    def do_show(self, arg) -> bool | None:
+    def do_show(self, arg):
         """
         Usage: show <class> <id> or <class>.show(<id>)
 
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         print(objs["{}.{}".format(list_args[0], list_args[1])])
 
-    def do_destroy(self, arg) -> bool | None:
+    def do_destroy(self, arg):
         """
         Usage: destroy <class> <id> or <class>.distroy(<id>)
 
@@ -158,7 +158,7 @@ class HBNBCommand(cmd.Cmd):
         del objs["{}.{}".format(list_args[0], list_args[1])]
         storage.save()
 
-    def do_all(self, arg) -> bool | None:
+    def do_all(self, arg):
         """
         Usage: all or all <class> or <class>.all()
 
@@ -178,7 +178,7 @@ class HBNBCommand(cmd.Cmd):
                     list_objs.append(obj.__str__())
             print(list_objs)
 
-    def do_update(self, arg) -> bool | None:
+    def do_update(self, arg):
         """
         Usage: update <class name> <id> <attribute name> "<attribute value>" or
         <class>.update(<id>, <attribute name>, "<attribute value>") or
@@ -210,7 +210,6 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** value missing **")
                 return False
-
         if len(list_args) == 4:
             obj = objs["{}.{}".format(list_args[0], list_args[1])]
             if list_args[2] in obj.__class__.__dict__.keys():
@@ -231,7 +230,7 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[key] = value
         storage.save()
 
-    def do_count(self, arg) -> None:
+    def do_count(self, arg):
         """
         Usage: count <class> or <class>.count()
 
