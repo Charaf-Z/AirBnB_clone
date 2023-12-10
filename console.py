@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         "User"
         }
 
-    def emptyline(self) -> bool:
+    def emptyline(self) -> None:
         """Do nothins when receiving an empty line."""
         pass
 
